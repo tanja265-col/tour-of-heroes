@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero'; // Hero-tietotyyppi
+import { HEROES } from '../mock-heroes';
 
 @Component({
   selector: 'app-heroes',
@@ -12,8 +13,15 @@ export class HeroesComponent implements OnInit {
     id: 1,
     name: 'Windstorm',
   };
+  heroes = HEROES; // kaikki sankarit taulukosta
+
+  selectedHero: Hero; //saadaan kun painetaan linkistä
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 }
