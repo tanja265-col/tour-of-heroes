@@ -14,18 +14,19 @@ tiedolle muunnoksen, tässä tapauksessa muuntaa kirjaimet isoiksi
 <h2>My Heroes</h2>
 <ul class="heroes">
   <!--*ngFor on Angularin sisäänrakennettu iteraatiodirektiivi-->
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+  <!--class-binging tarkoittaa sitä että css-tyyli sidotaan ehtoon
+  ja jos ehto on tosi, niin tyyli esitetään. 
+  [class.tyylinnimi]="ehto" -->
+  <li
+    *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)"
+  >
     <span class="badge">{{ hero.id }}</span> {{ hero.name }}
   </li>
 </ul>
 
-<!--Alapuolelle tulee sankarin yksityiskohdat eli detailit
-jos selectedHero -muuttuja on saanut arvon eli on valittu-->
-<div *ngIf="selectedHero">
-  <h2>{{ selectedHero.name | uppercase }} Details</h2>
-  <div><span>id: </span>{{ selectedHero.id }}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name" />
-  </div>
-</div>
+<!-- selectedHero menee lapsikomponenttiin, sen Hero-muuttujaan.
+Tämä on property-binding jolla tehdään tiedon välitys
+äitikomponentista lapsikomponenttiin. Tämä on @Input lapsikomponenttiin.-->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
