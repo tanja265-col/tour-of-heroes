@@ -38,16 +38,15 @@ export class HeroesComponent implements OnInit {
   ngOnInit(): void {
     // sankarit haetaan aina kun komponentti syntyy muistiin
     this.getHeroes();
-  }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+    //onSelect(hero: Hero): void {
+    //tämä käytössä aiemmin tässä: this.selectedHero = hero;
     /*
     Kun valitsemme sankarin,lähtee viesti messageservicen kautta
     tähän messagekomponentiin, jossa viesti esitetään
     */
 
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+    //this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
     // penteinteinen tapa yhdistää merkkijono ja muuttuja:
     // 'HeroesComponent: Selected hero id=' + hero.id
   }
