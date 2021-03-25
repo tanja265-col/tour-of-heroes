@@ -11,6 +11,7 @@ import { HeroService } from '../hero.service'; // tarvitaan hakemaan sankari kun
 })
 export class HeroDetailComponent implements OnInit {
   //tämä oli käytössä kun tuli vielä äitikomponenstista: @Input() hero: Hero;
+  hero: Hero;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,5 +32,10 @@ export class HeroDetailComponent implements OnInit {
   }
   goBack(): void {
     this.location.back();
+  }
+  //päivittä sankarin ja menee suoraan listanäkymään jossa
+  //päivitetty sankari näkyy
+  save(): void {
+    this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
   }
 }

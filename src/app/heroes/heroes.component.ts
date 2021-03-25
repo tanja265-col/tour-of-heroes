@@ -65,4 +65,18 @@ export class HeroesComponent implements OnInit {
   getHeroes(): void {
     this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
   }
+  add(name: string): void {
+    name = name.trim(); // ottaa pois tyhjät välilyönnit
+    if (!name) {
+      return;
+    }
+    //tyypinmuunnos Hero-tyyppiseksi
+    this.heroService.addHero({ name } as Hero).subscribe((hero) => {
+      this.heroes.push(hero); // lisätään sankari heti käyttöliittymään
+    });
+  }
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter((h) => h !== hero);
+    this.heroService.deleteHero(hero.id).subscribe();
+  }
 }

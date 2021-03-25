@@ -1,0 +1,16 @@
+<div id="search-component">
+  <label for="search-box">Hero Search</label>
+  <!--input-event on sidottu luokan search metodiin jonka arvot laatikkoon
+  kirjoitetut-->
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <!--async pipe eli filtteri tilaa observable tempalaatissa
+      , jolloin tulos eli sankarit saadaan ulos observablesta-->
+    <li *ngFor="let hero of heroes$ | async">
+      <a routerLink="/detail/{{ hero.id }}">
+        {{ hero.name }}
+      </a>
+    </li>
+  </ul>
+</div>
